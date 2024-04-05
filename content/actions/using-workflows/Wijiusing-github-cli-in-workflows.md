@@ -1,4 +1,17 @@
----
+#soer2
+name: Comment when opened
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ github.event.issue.html_url }}
 title: Using GitHub CLI in workflows
 shortTitle: GitHub CLI in workflows
 intro: 'You can script with {% data variables.product.prodname_cli %} in {% data variables.product.prodname_actions %} workflows.'
